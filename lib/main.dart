@@ -25,12 +25,25 @@ class _InicioState extends State<Inicio> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Cakes & Postries')),
-      body: Container(
-        padding: EdgeInsets.all(20.0),
-        child: Image.network(
-            "https://assets.materialup.com/uploads/fe95c282-f90b-497d-8572-69bb4e0e0a22/preview.png"),
-      ),
-    );
+        appBar: AppBar(title: Text('Cakes & Postries')),
+        body: ListView(
+          children: <Widget>[
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: Image.network(
+                  "https://assets.materialup.com/uploads/fe95c282-f90b-497d-8572-69bb4e0e0a22/preview.png"),
+            ),
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: Image.network(
+                  "https://assets.materialup.com/uploads/fe95c282-f90b-497d-8572-69bb4e0e0a22/preview.png"),
+            ),
+            Container(
+              padding: EdgeInsets.all(20.0),
+              child: Image.network(
+                  "https://assets.materialup.com/uploads/fe95c282-f90b-497d-8572-69bb4e0e0a22/preview.png"),
+            ),
+          ],
+        ));
   }
 }
