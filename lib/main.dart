@@ -1,11 +1,24 @@
-import 'package:flutter/material.dart';
+import 'dart:io';
 
-void main() {
-  runApp(cakes_app());
+import 'package:flutter/material.dart';
+import 'package:cakes_postries/pages/home.dart';
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
 }
 
-class cakes_app extends StatelessWidget {
-  const cakes_app({Key key}) : super(key: key);
+void main() {
+  HttpOverrides.global = new MyHttpOverrides();
+  runApp(CakesApp());
+}
+
+class CakesApp extends StatelessWidget {
+  const CakesApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,28 +35,17 @@ class Inicio extends StatefulWidget {
 }
 
 class _InicioState extends State<Inicio> {
+  final _miTheme = ThemeData(
+    primaryColor: Color(0xffffc300),
+  );
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(title: Text('Cakes & Postries')),
-        body: ListView(
-          children: <Widget>[
-            Container(
-              padding: EdgeInsets.all(20.0),
-              child: Image.network(
-                  "https://assets.materialup.com/uploads/fe95c282-f90b-497d-8572-69bb4e0e0a22/preview.png"),
-            ),
-            Container(
-              padding: EdgeInsets.all(20.0),
-              child: Image.network(
-                  "https://assets.materialup.com/uploads/fe95c282-f90b-497d-8572-69bb4e0e0a22/preview.png"),
-            ),
-            Container(
-              padding: EdgeInsets.all(20.0),
-              child: Image.network(
-                  "https://assets.materialup.com/uploads/fe95c282-f90b-497d-8572-69bb4e0e0a22/preview.png"),
-            ),
-          ],
-        ));
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      title: 'Cakes & Postries',
+      theme: _miTheme,
+      home: HomePage(),
+    );
   }
 }
